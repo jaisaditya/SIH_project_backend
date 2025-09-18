@@ -17,6 +17,7 @@ import recordRoutes from "./routes/recordRoutes.js";
 import pharmacyRoutes from "./routes/pharmacyRoutes.js";
 import pharmacyAuthRoutes from "./routes/pharmacyAuthRoutes.js";
 import billRoutes from "./routes/billRoutes.js";
+import aiRoutes from "./routes/aiRoutes.js"
 
 // persistence model
 import Consultation from "./models/Consultation.js";
@@ -54,6 +55,8 @@ app.use("/api/health-records", recordRoutes);
 app.use("/api/pharmacies", pharmacyRoutes);
 app.use("/api/pharmacy-auth", pharmacyAuthRoutes);
 app.use("/api/bills", billRoutes);
+app.use('/api/ai', aiRoutes)
+
 
 // 404 handler
 app.use((req, res, next) => {
