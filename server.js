@@ -35,6 +35,11 @@ if (!fs.existsSync(uploadsDir)) {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// new
+// ignore favicon requests (prevents error logs)
+app.get('/favicon.ico', (req, res) => res.status(204).end());
+
+
 dotenv.config();
 connectDB();
 
