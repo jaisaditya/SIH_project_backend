@@ -35,10 +35,6 @@ if (!fs.existsSync(uploadsDir)) {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// new
-// ignore favicon requests (prevents error logs)
-app.get('/favicon.ico', (req, res) => res.status(204).end());
-
 
 dotenv.config();
 connectDB();
@@ -62,6 +58,9 @@ app.use("/api/pharmacy-auth", pharmacyAuthRoutes);
 app.use("/api/bills", billRoutes);
 app.use('/api/ai', aiRoutes)
 
+// new
+// ignore favicon requests (prevents error logs)
+app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 // 404 handler
 app.use((req, res, next) => {
@@ -69,6 +68,7 @@ app.use((req, res, next) => {
   res.status(404);
   next(error);
 });
+
 
 // error handler
 app.use((err, req, res, next) => {
@@ -80,6 +80,8 @@ app.use((err, req, res, next) => {
     stack: process.env.NODE_ENV === "production" ? null : err.stack,
   });
 });
+
+
 
 // -------------------- SOCKET.IO SETUP --------------------
 const PORT = process.env.PORT || 5000;
